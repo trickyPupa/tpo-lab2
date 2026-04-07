@@ -1,20 +1,22 @@
-import function.*
+import func.Function
+import log.{Ln, LogN}
+import trig.{Cos, Cot, Csc, Sin, Tan}
 
 import java.math.{MathContext, RoundingMode}
 
-class Equation(private val maxIter: Int = Function.MAX_ITERATIONS) extends Function(maxIter) {
+class Equation extends Function {
 
-  private val sin: Sin = Sin(maxIter)
-  private val cos: Cos = Cos(maxIter)
-  private val tan: Tan = Tan(maxIter)
-  private val csc: Csc = Csc(maxIter)
-  private val cot: Cot = Cot(maxIter)
+  private val sin: Sin = Sin()
+  private val cos: Cos = Cos()
+  private val tan: Tan = Tan()
+  private val csc: Csc = Csc()
+  private val cot: Cot = Cot()
 
-  private val log2: LogN = LogN(2, maxIter)
-  private val log3: LogN = LogN(3, maxIter)
-  private val log5: LogN = LogN(5, maxIter)
-  private val log10: LogN = LogN(10, maxIter)
-  private val ln: Ln = Ln(maxIter)
+  private val log2: LogN = LogN(2)
+  private val log3: LogN = LogN(3)
+  private val log5: LogN = LogN(5)
+  private val log10: LogN = LogN(10)
+  private val ln: Ln = Ln()
 
   override def calculate(x: BigDecimal, p: BigDecimal): BigDecimal = {
     val mc = MathContext(MathContext.DECIMAL128.getPrecision, RoundingMode.HALF_EVEN)

@@ -1,4 +1,6 @@
-import function.Sin
+package main
+
+import trig.Sin
 
 @main
 def main(): Unit = {

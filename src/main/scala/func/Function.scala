@@ -1,19 +1,20 @@
-package function
+package func
 
-import function.Function.ZERO
+import java.math.MathContext
 
-trait Function(private val maxIter: Int) {
+trait Function {
   def calculate(x: BigDecimal, precision: BigDecimal): BigDecimal
 
   protected def validate(x: BigDecimal, precision: BigDecimal): Unit = {
     require(x != null)
     require(precision != null)
-    require(precision.compareTo(ZERO) >= 0 && precision.compareTo(ZERO) < 0)
+    require(precision >= Function.ZERO && precision < Function.ONE)
   }
 }
 
 object Function {
-  val MAX_ITERATIONS = 100_000
   val EPS: BigDecimal = BigDecimal("1e-10")
   val ZERO: BigDecimal = BigDecimal(0)
+  val ONE: BigDecimal = BigDecimal(1)
+  val PI: BigDecimal = BigDecimal(Math.PI, MathContext(MathContext.DECIMAL128.getPrecision))
 }
