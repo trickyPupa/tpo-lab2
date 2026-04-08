@@ -19,36 +19,26 @@ class Equation extends Function {
   private val ln: Ln = Ln()
 
   override def calculate(x: BigDecimal, p: BigDecimal): BigDecimal = {
-    val mc = MathContext(MathContext.DECIMAL128.getPrecision, RoundingMode.HALF_EVEN)
-
     // x <= 0 : (((((sin(x) + cos(x)) * csc(x)) - cos(x)) / (cos(x) ^ 3)) * (((sin(x) / sin(x)) ^ 3) * ((sin(x) / tan(x)) / cot(x))))
     if (x.compareTo(Function.ZERO) <= 0) {
-      c(csc, x, p)
-        .*(c(sin, x, p).+(c(cos, x, p)))
-        .-(c(cos, x, p))
-        ./(c(cos, x, p).pow(3))
-        .*(
-          c(sin, x, p)
-            ./(c(sin, x, p).pow(3))
-            .*(c(sin, x, p)./(c(tan, x, p))./(c(cot, x, p)))
-        )
+      val sinx = c(sin, x, p)
+      val cosx = c(cos, x, p)
+      val cscx = c(csc, x, p)
+      val tanx = c(tan, x, p)
+      val cotx = c(cot, x, p)
+      
+      ((((sinx + cosx) * cscx) - cosx) / cosx.pow(3)) *
+        ((sinx / sinx).pow(3) * ((sinx / tanx) / cotx))
     }
     // x > 0 : (((((ln(x) / log_5(x)) + ln(x)) / log_2(x)) - ((ln(x) - ln(x)) - log_3(x))) * ((log_10(x) + (log_2(x) + log_2(x))) * ((log_10(x) / log_2(x)) / log_10(x))))
     else {
-      c(ln, x, p)
-        ./(c(log5, x, p))
-        .+(c(ln, x, p))
-        ./(c(log2, x, p))
-        .-(
-          c(ln, x, p)
-            .-(c(ln, x, p))
-            .-(c(log3, x, p))
-        )
-        .*(
-          c(log10, x, p)
-            .+(c(log2, x, p).+(c(log2, x, p)))
-            .*(c(log10, x, p)./(c(log2, x, p))./(c(log10, x, p)))
-        )
+      val lnx = c(ln, x, p)
+      val log2x = c(log2, x, p)
+      val log3x = c(log3, x, p)
+      val log5x = c(log5, x, p)
+      val log10x = c(log10, x, p)
+      ((((lnx / log5x) + lnx) / log2x) - ((lnx - lnx) - log3x)) * 
+        ((log10x + (log2x + log2x)) * ((log10x / log2x) / log10x))
     }
   }
 
