@@ -1,4 +1,4 @@
-package logTests
+package log
 
 import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows}
 import org.junit.jupiter.api.Test

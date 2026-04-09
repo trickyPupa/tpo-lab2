@@ -1,4 +1,4 @@
-package utilTests
+package util
 
 import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows, assertTrue}
 import org.junit.jupiter.api.{AfterEach, BeforeEach, Test}
@@ -12,12 +12,14 @@ import log.Ln
 import trig.Sin
 import util.CsvWriter
 
+import scala.compiletime.uninitialized
+
 class CsvWriterTest {
 
   @TempDir
-  var tempDir: Path = _
+  var tempDir: Path = uninitialized
 
-  private var testFunction: Function = _
+  private var testFunction: Function = uninitialized
 
   @BeforeEach
   def setUp(): Unit = {
@@ -98,12 +100,12 @@ class CsvWriterTest {
     val exception1 = assertThrows(classOf[IllegalArgumentException], () => {
       CsvWriter.write(testFunction, BigDecimal(0), BigDecimal(1), BigDecimal(0.1), BigDecimal(0), "test")
     })
-    assertEquals("Точность должна быть >0 и <1", exception1.getMessage)
+    assertEquals("requirement failed: Точность должна быть >0 и <1", exception1.getMessage)
 
     val exception2 = assertThrows(classOf[IllegalArgumentException], () => {
       CsvWriter.write(testFunction, BigDecimal(0), BigDecimal(1), BigDecimal(0.1), BigDecimal(1.5), "test")
     })
-    assertEquals("Точность должна быть >0 и <1", exception2.getMessage)
+    assertEquals("requirement failed: Точность должна быть >0 и <1", exception2.getMessage)
   }
 
   @Test
@@ -157,7 +159,7 @@ class CsvWriterTest {
     val value = BigDecimal(1.23456789)
     val formatted = CsvWriter.getClass.getDeclaredMethod("formatDecimal", classOf[BigDecimal], classOf[Int])
     formatted.setAccessible(true)
-    val result = formatted.invoke(null, value, Int.box(4)).asInstanceOf[String]
+    val result = formatted.invoke(CsvWriter, value, Int.box(4)).asInstanceOf[String]
 
     // Проверяем формат (может быть "1.2346" с округлением)
     assertTrue(result.matches("\\d+\\.\\d{4}"))

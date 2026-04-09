@@ -31,6 +31,7 @@ class Equation extends Function {
       
       ((((sinx + cosx) * cscx) - cosx) / cosx.pow(3)) *
         ((sinx / sinx).pow(3) * ((sinx / tanx) / cotx))
+          .setScale(p.scale, BigDecimal.RoundingMode.HALF_EVEN)
     }
     // x > 0 : (((((ln(x) / log_5(x)) + ln(x)) / log_2(x)) - ((ln(x) - ln(x)) - log_3(x))) * ((log_10(x) + (log_2(x) + log_2(x))) * ((log_10(x) / log_2(x)) / log_10(x))))
     else {
@@ -39,8 +40,9 @@ class Equation extends Function {
       val log3x = c(log3, x, p)
       val log5x = c(log5, x, p)
       val log10x = c(log10, x, p)
-      ((((lnx / log5x) + lnx) / log2x) - ((lnx - lnx) - log3x)) * 
+      ((((lnx / log5x) + lnx) / log2x) - ((lnx - lnx) - log3x)) *
         ((log10x + (log2x + log2x)) * ((log10x / log2x) / log10x))
+          .setScale(p.scale, BigDecimal.RoundingMode.HALF_EVEN)
     }
   }
 

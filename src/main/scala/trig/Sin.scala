@@ -2,15 +2,14 @@ package trig
 
 import func.Function
 import java.math.MathContext
-import scala.math.BigDecimal.RoundingMode
 
 class Sin extends Function {
   override def calculate(_x: BigDecimal, precision: BigDecimal): BigDecimal = {
     validate(_x, precision)
 
-    val mc = new MathContext(precision.scale + 5, java.math.RoundingMode.HALF_EVEN)
+    val mc = new MathContext(precision.scale + 10)
 
-    val x: BigDecimal = (_x % (Function.PI * 2)).setScale(precision.scale, RoundingMode.HALF_EVEN)
+    val x: BigDecimal = (_x % (Function.PI * 2)).setScale(precision.scale, BigDecimal.RoundingMode.HALF_EVEN)
 
     var term = x
     var result = x
@@ -24,6 +23,6 @@ class Sin extends Function {
       n += 1
     }
 
-    result.setScale(precision.scale, RoundingMode.HALF_EVEN)
+    result.setScale(precision.scale, BigDecimal.RoundingMode.HALF_EVEN)
   }
 }

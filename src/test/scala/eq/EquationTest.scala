@@ -1,7 +1,7 @@
-package eqTests
+package eq
 
 import eq.Equation
-import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows}
+import org.junit.jupiter.api.Assertions.{assertDoesNotThrow, assertEquals, assertThrows}
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
@@ -14,8 +14,14 @@ class EquationTest {
   @ParameterizedTest
   @CsvFileSource(resources = Array("/equation.csv"), delimiter = ',', numLinesToSkip = 1)
   def testEquationWithCsvData(x: Double, expected: Double): Unit = {
-    val actual = equation.calculate(BigDecimal(x), BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), precision)
+    if (expected.isNaN) {
+      assertThrows(classOf[Exception], () => {
+        equation.calculate(BigDecimal(x), BigDecimal(precision))
+      })
+    } else {
+      val actual = equation.calculate(BigDecimal(x), BigDecimal(precision))
+      assertEquals(expected, actual.doubleValue(), precision)
+    }
   }
 
   @Test
@@ -33,15 +39,15 @@ class EquationTest {
   }
 
   @Test
-  def testEquationThrowsExceptionAtPi(): Unit = {
-    assertThrows(classOf[IllegalArgumentException], () => {
+  def testEquationAtPiIsDefined(): Unit = {
+    assertDoesNotThrow(() => {
       equation.calculate(BigDecimal(Math.PI), BigDecimal(precision))
     })
   }
 
   @Test
-  def testEquationThrowsExceptionAtPiHalf(): Unit = {
-    assertThrows(classOf[IllegalArgumentException], () => {
+  def testEquationAtPiHalfIsDefined(): Unit = {
+    assertDoesNotThrow(() => {
       equation.calculate(BigDecimal(Math.PI / 2), BigDecimal(precision))
     })
   }

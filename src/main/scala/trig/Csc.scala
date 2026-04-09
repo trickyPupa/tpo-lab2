@@ -15,7 +15,7 @@ class Csc extends Function {
 
   override def validate(x: BigDecimal, precision: BigDecimal): Unit = {
     super.validate(x, precision)
-    val t: BigDecimal = x % (Function.PI * 2).abs
-    require(t < Function.PI && t != 0 , s"Косеканс не имеет значений при x = $x")
+    val s = sin.calculate(x, precision)
+    require(s.abs > Function.EPS, s"Косеканс не имеет значений при x = $x")
   }
 }

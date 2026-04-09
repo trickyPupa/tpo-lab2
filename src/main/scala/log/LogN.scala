@@ -3,6 +3,8 @@ package log
 import func.Function
 
 class LogN(val base: Int) extends Function {
+  require(base > 0 && base != 1, s"Основание логарифма должно быть > 0 и != 1, получено $base")
+
   private val ln = Ln()
   
   override def calculate(x: BigDecimal, precision: BigDecimal): BigDecimal = {

@@ -1,4 +1,4 @@
-package trigTests
+package trig
 
 import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows}
 import org.junit.jupiter.api.Test
@@ -23,7 +23,7 @@ class CotTest {
     val original = cot.calculate(BigDecimal(x), BigDecimal(precision))
     val shifted = cot.calculate(BigDecimal(x + Math.PI), BigDecimal(precision))
 
-    assertEquals(original.doubleValue(), shifted.doubleValue(), 0.0001)
+    assertEquals(original.doubleValue(), shifted.doubleValue(), precision)
   }
 
   @Test

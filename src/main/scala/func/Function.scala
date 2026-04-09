@@ -8,7 +8,7 @@ trait Function {
   protected def validate(x: BigDecimal, precision: BigDecimal): Unit = {
     require(x != null)
     require(precision != null)
-    require(precision >= Function.ZERO && precision < Function.ONE)
+    require(precision > Function.ZERO && precision < Function.ONE)
   }
 }
 

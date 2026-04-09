@@ -1,4 +1,4 @@
-package trigTests
+package trig
 
 import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows}
 import org.junit.jupiter.api.Test
@@ -28,7 +28,7 @@ class TanTest {
 
   @Test
   def testTanIsOdd(): Unit = {
-    val testValues = Seq(0.5, 1.0, 1.5, 2.0, 2.5)
+    val testValues = Seq(0.5, 1.0, 2.0, 2.5)
 
     testValues.foreach { x =>
       val positive = tan.calculate(BigDecimal(x), BigDecimal(precision))

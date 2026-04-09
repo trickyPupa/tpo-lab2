@@ -1,6 +1,7 @@
 package trig
 
 import func.Function
+import java.math.MathContext
 
 class Tan extends Function {
   private val sin = Sin()
@@ -9,14 +10,16 @@ class Tan extends Function {
   override def calculate(x: BigDecimal, precision: BigDecimal): BigDecimal = {
     validate(x, precision)
 
-    val s = sin.calculate(x, precision)
-    val c = cos.calculate(x, precision)
+    val s = sin.calculate(x, precision / 100)
+    val c = cos.calculate(x, precision / 100)
+    val mc = MathContext(precision.scale + 10)
 
-    s / c
+    (s / c)(mc).setScale(precision.scale, BigDecimal.RoundingMode.HALF_EVEN)
   }
 
   override def validate(x: BigDecimal, precision: BigDecimal): Unit = {
     super.validate(x, precision)
-    require((x % (Function.PI * 2)).abs < Function.PI / 2, s"Тангенс не имеет значений при x = $x")
+    val c = cos.calculate(x, precision)
+    require(c.abs > Function.EPS, s"Тангенс не имеет значений при x = $x")
   }
 }
