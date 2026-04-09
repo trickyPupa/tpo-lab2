@@ -1,6 +1,8 @@
+package eq
+
 import func.Function
 import log.{Ln, LogN}
-import trig.{Cos, Cot, Csc, Sin, Tan}
+import trig.*
 
 import java.math.{MathContext, RoundingMode}
 
