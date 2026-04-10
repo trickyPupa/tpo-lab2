@@ -13,8 +13,14 @@ class CotTest {
   @ParameterizedTest
   @CsvFileSource(resources = Array("/cot.csv"), delimiter = ',', numLinesToSkip = 1)
   def testCotWithCsvData(x: Double, expected: Double): Unit = {
-    val actual = cot.calculate(BigDecimal(x), BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), precision)
+    if (x == 0) {
+      assertThrows(classOf[IllegalArgumentException], () => {
+        cot.calculate(BigDecimal(x), BigDecimal(precision))
+      })
+    } else {
+      val actual = cot.calculate(BigDecimal(x), BigDecimal(precision))
+      assertEquals(expected, actual.doubleValue(), precision)
+    }
   }
 
   @ParameterizedTest

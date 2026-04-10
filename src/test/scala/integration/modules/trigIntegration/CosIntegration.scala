@@ -32,7 +32,7 @@ class CosIntegration {
       val cosx = cos.calculate(BigDecimal(x), BigDecimal(precision))
       val sum = sinx * sinx + cosx * cosx
 
-      assertEquals(1.0, sum.doubleValue(), 0.01, s"sin^2+cos^2 != 1 for x=$x")
+      assertEquals(1.0, sum.doubleValue(), precision, s"sin^2+cos^2 != 1 for x=$x")
     }
   }
 
@@ -47,7 +47,7 @@ class CosIntegration {
 
     testCases.foreach { case (x, expected) =>
       val actual = cos.calculate(BigDecimal(x), BigDecimal(precision))
-      assertEquals(expected, actual.doubleValue(), 0.001, s"Cos($x) failed")
+      assertEquals(expected, actual.doubleValue(), precision, s"Cos($x) failed")
     }
   }
 

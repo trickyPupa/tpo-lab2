@@ -29,7 +29,7 @@ class LogNIntegration {
     val expected = 3.0
 
     val actual = log2.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.01)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
@@ -38,7 +38,7 @@ class LogNIntegration {
     val expected = 3.0
 
     val actual = log3.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.01)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
@@ -47,7 +47,7 @@ class LogNIntegration {
     val expected = 3.0
 
     val actual = log5.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.01)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
@@ -56,7 +56,7 @@ class LogNIntegration {
     val expected = 2.0
 
     val actual = log10.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.01)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
@@ -66,7 +66,7 @@ class LogNIntegration {
     val lnx = ln.calculate(x, BigDecimal(precision))
     val ln2 = ln.calculate(BigDecimal(2), BigDecimal(precision))
 
-    assertEquals(log2x.doubleValue(), (lnx / ln2).doubleValue(), 0.01)
+    assertEquals(log2x.doubleValue(), (lnx / ln2).doubleValue(), precision)
   }
 
   @Test
@@ -78,7 +78,7 @@ class LogNIntegration {
     val log10b = log10.calculate(b, BigDecimal(precision))
     val log10ab = log10.calculate(a * b, BigDecimal(precision))
 
-    assertEquals((log10a + log10b).doubleValue(), log10ab.doubleValue(), 0.01)
+    assertEquals((log10a + log10b).doubleValue(), log10ab.doubleValue(), precision)
   }
 
   @Test

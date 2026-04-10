@@ -31,7 +31,7 @@ class TrigIntegration {
       val expected = sinx / cosx
 
       val actual = tan.calculate(x, BigDecimal(precision))
-      assertEquals(expected.doubleValue(), actual.doubleValue(), 0.001)
+      assertEquals(expected.doubleValue(), actual.doubleValue(), precision)
     }
 
     @Test
@@ -41,7 +41,7 @@ class TrigIntegration {
       val expected = BigDecimal(1) / tanx
 
       val actual = cot.calculate(x, BigDecimal(precision))
-      assertEquals(expected.doubleValue(), actual.doubleValue(), 0.001)
+      assertEquals(expected.doubleValue(), actual.doubleValue(), precision)
     }
 
     @Test
@@ -51,7 +51,7 @@ class TrigIntegration {
       val expected = BigDecimal(1) / sinx
 
       val actual = csc.calculate(x, BigDecimal(precision))
-      assertEquals(expected.doubleValue(), actual.doubleValue(), 0.001)
+      assertEquals(expected.doubleValue(), actual.doubleValue(), precision)
     }
 
     @Test

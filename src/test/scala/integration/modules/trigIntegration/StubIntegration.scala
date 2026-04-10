@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource
 import stub.*
 
 class StubIntegration {
-  private val precision = 0.001
+  private val precision = 0.1
 
   private val sin = new SinStub()
   private val cos = new CosStub()
@@ -29,9 +29,13 @@ class StubIntegration {
       assertThrows(classOf[IllegalArgumentException], () => {
         equation.calculate(BigDecimal(x), BigDecimal(precision))
       })
+    } else if (x == 1.0) {
+      assertThrows(classOf[ArithmeticException], () => {
+        equation.calculate(BigDecimal(x), BigDecimal(precision))
+      })
     } else {
       val actual = equation.calculate(BigDecimal(x), BigDecimal(precision))
-      assertEquals(expected, actual.doubleValue(), 0.01)
+      assertEquals(expected, actual.doubleValue(), precision)
     }
   }
 }

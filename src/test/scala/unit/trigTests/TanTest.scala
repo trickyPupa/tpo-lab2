@@ -23,7 +23,7 @@ class TanTest {
     val original = tan.calculate(BigDecimal(x), BigDecimal(precision))
     val shifted = tan.calculate(BigDecimal(x + Math.PI), BigDecimal(precision))
 
-    assertEquals(original.doubleValue(), shifted.doubleValue(), 0.0001)
+    assertEquals(original.doubleValue(), shifted.doubleValue(), precision)
   }
 
   @Test

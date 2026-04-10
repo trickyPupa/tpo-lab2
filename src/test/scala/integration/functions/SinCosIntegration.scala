@@ -16,7 +16,7 @@ class SinCosIntegration {
       val expected = 0.5
 
       val actual = cos.calculate(x, BigDecimal(precision))
-      assertEquals(expected, actual.doubleValue(), 0.001)
+      assertEquals(expected, actual.doubleValue(), precision)
     }
 
     @Test
@@ -28,7 +28,7 @@ class SinCosIntegration {
         val cosx = cos.calculate(BigDecimal(x), BigDecimal(precision))
         val sum = sinx * sinx + cosx * cosx
 
-        assertEquals(1.0, sum.doubleValue(), 0.01,
+        assertEquals(1.0, sum.doubleValue(), precision,
           s"sin^2 + cos^2 != 1 for x = $x")
       }
     }

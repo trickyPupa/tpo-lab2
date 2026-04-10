@@ -38,6 +38,6 @@ class SinTest {
     val original = sin.calculate(BigDecimal(x), BigDecimal(precision))
     val shifted = sin.calculate(BigDecimal(x + 6.2832), BigDecimal(precision))
 
-    assertEquals(original.doubleValue(), shifted.doubleValue(), 0.0001)
+    assertEquals(original.doubleValue(), shifted.doubleValue(), precision)
   }
 }

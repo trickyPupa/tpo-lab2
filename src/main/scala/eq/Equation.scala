@@ -19,7 +19,8 @@ class Equation(
                 private val log10: Function
               ) extends Function {
 
-  override def calculate(x: BigDecimal, p: BigDecimal): BigDecimal = {
+  override def calculate(x: BigDecimal, _p: BigDecimal): BigDecimal = {
+    val p = _p / 10000
     // x <= 0 : (((((sin(x) + cos(x)) * csc(x)) - cos(x)) / (cos(x) ^ 3)) * (((sin(x) / sin(x)) ^ 3) * ((sin(x) / tan(x)) / cot(x))))
     if (x.compareTo(Function.ZERO) <= 0) {
       val sinx = c(sin, x, p)

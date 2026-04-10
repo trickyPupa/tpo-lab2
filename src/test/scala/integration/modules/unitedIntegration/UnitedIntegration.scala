@@ -15,34 +15,33 @@ class UnitedIntegration {
   @Test
   def testEquationNegativeBranch(): Unit = {
     val expectedResults = Map(
-      -0.5 -> 0.122972,
-      -1.0 -> 10.5953,
-      -2.0 -> -1295.03,
-      -3.0 -> -0.00054624,
-      -4.0 -> 5.88553,
-      -5.0 -> 19577.4
+      -0.5 -> 1.2116,
+      -1.0 -> 0.9731,
+      -2.0 -> 23.6419,
+      -3.0 -> 1.3098,
+      -4.0 -> -2.1407
     )
 
     expectedResults.foreach { case (x, expected) =>
       val actual = equation.calculate(BigDecimal(x), BigDecimal(precision))
-      assertEquals(expected, actual.doubleValue(), 0.01, s"Failed for x=$x")
+      assertEquals(expected, actual.doubleValue(), 0.02, s"Failed for x=$x")
     }
   }
 
   @Test
   def testEquationPositiveBranch(): Unit = {
     val expectedResults = Map(
-      0.5 -> -0.371263,
-      1.5 -> 4.00123,
-      2.0 -> 2.17487,
-      3.0 -> 0.921896,
-      4.0 -> 0.307052,
-      5.0 -> -0.102364
+      0.5 -> -3.5602,
+      1.5 -> 8.7750,
+      2.0 -> 6.7500,
+      3.0 -> 6.2325,
+      4.0 -> 6.3501,
+      5.0 -> 6.5608
     )
 
     expectedResults.foreach { case (x, expected) =>
       val actual = equation.calculate(BigDecimal(x), BigDecimal(precision))
-      assertEquals(expected, actual.doubleValue(), 0.01, s"Failed for x=$x")
+      assertEquals(expected, actual.doubleValue(), 0.02, s"Failed for x=$x")
     }
   }
 

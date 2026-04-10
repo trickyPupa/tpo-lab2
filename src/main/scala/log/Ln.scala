@@ -12,7 +12,7 @@ class Ln extends Function {
 
     if (x == 1) return Function.ZERO
 
-    val e = BigDecimal(Math.E, MathContext(precision.scale))
+    val e = BigDecimal(Math.E, MathContext(precision.scale + 2))
     var k = Function.ZERO
     while (x > 2) {
       x /= e
@@ -28,7 +28,7 @@ class Ln extends Function {
     var term = y
     var n: Int = 1
 
-    while (term.abs > precision) {
+    while (term.abs > (precision / 100)) {
       result += term / n
       term *= y * y
       n += 2

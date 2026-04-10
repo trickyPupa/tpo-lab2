@@ -42,6 +42,6 @@ class SinIntegration {
     val result = equation.calculate(x, BigDecimal(precision))
 
     val expected = 0.9736
-    assertEquals(expected, result.doubleValue(), 0.01)
+    assertEquals(expected, result.doubleValue(), precision)
   }
 }

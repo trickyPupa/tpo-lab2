@@ -9,13 +9,20 @@ import scala.math.BigDecimal.RoundingMode
 abstract class CsvStub(fileName: String) extends Function {
   protected val stubData: Map[BigDecimal, BigDecimal] = {
     val data = mutable.Map[BigDecimal, BigDecimal]()
-    val source = Source.fromFile(s"src/test/resources/$fileName.csv")
+
+    val source = {
+      val classpathStream = Option(getClass.getResourceAsStream(s"/$fileName.csv"))
+      classpathStream
+        .map(stream => Source.fromInputStream(stream, "UTF-8"))
+        .getOrElse(Source.fromFile(s"src/test/resources/$fileName.csv"))
+    }
+
     try {
       val lines = source.getLines().drop(1)
       lines.foreach { line =>
         val parts = line.split(",")
         if (parts.length == 2) {
-          val x = BigDecimal(parts(0).trim)
+          val x = BigDecimal(parts(0).trim).setScale(4, RoundingMode.HALF_EVEN)
           val y = parts(1).trim match {
             case "NaN" | "undefined" => null
             case s => BigDecimal(s)

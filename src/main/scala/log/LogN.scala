@@ -10,7 +10,7 @@ class LogN(val base: Int) extends Function {
   override def calculate(x: BigDecimal, precision: BigDecimal): BigDecimal = {
     validate(x, precision)
     
-    ln.calculate(x, precision) / ln.calculate(BigDecimal(base), precision)
+    ln.calculate(x, precision / 100) / ln.calculate(BigDecimal(base), precision / 100)
   }
 
   override def validate(x: BigDecimal, precision: BigDecimal): Unit = {

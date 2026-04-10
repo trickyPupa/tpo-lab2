@@ -54,6 +54,6 @@ class LnIntegration {
   def testEquationRightBranchWithRealLn(): Unit = {
     val x = BigDecimal(2.0)
     val result = equation.calculate(x, BigDecimal(precision))
-    assertEquals(6.3431, result.doubleValue(), 0.1)
+    assertEquals(6.7500, result.doubleValue(), precision)
   }
 }

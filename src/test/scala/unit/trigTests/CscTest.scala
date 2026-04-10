@@ -23,7 +23,7 @@ class CscTest {
     val original = csc.calculate(BigDecimal(x), BigDecimal(precision))
     val shifted = csc.calculate(BigDecimal(x + 2 * Math.PI), BigDecimal(precision))
 
-    assertEquals(original.doubleValue(), shifted.doubleValue(), 0.0001)
+    assertEquals(original.doubleValue(), shifted.doubleValue(), precision)
   }
 
   @Test

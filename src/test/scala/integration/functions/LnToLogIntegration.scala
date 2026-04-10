@@ -14,7 +14,7 @@ class LnToLogIntegration {
 
     // log2(8) = 3
     val result = log2.calculate(BigDecimal(8), BigDecimal(precision))
-    assertEquals(3.0, result.doubleValue(), 0.01)
+    assertEquals(3.0, result.doubleValue(), precision)
   }
 
   @Test
@@ -23,7 +23,7 @@ class LnToLogIntegration {
 
     // log3(27) = 3
     val result = log3.calculate(BigDecimal(27), BigDecimal(precision))
-    assertEquals(3.0, result.doubleValue(), 0.01)
+    assertEquals(3.0, result.doubleValue(), precision)
   }
 
   @Test
@@ -32,7 +32,7 @@ class LnToLogIntegration {
 
     // log5(125) = 3
     val result = log5.calculate(BigDecimal(125), BigDecimal(precision))
-    assertEquals(3.0, result.doubleValue(), 0.01)
+    assertEquals(3.0, result.doubleValue(), precision)
   }
 
   @Test
@@ -41,7 +41,7 @@ class LnToLogIntegration {
 
     // log10(100) = 2
     val result = log10.calculate(BigDecimal(100), BigDecimal(precision))
-    assertEquals(2.0, result.doubleValue(), 0.01)
+    assertEquals(2.0, result.doubleValue(), precision)
   }
 
   @Test
@@ -54,6 +54,6 @@ class LnToLogIntegration {
     val lnx = ln.calculate(x, BigDecimal(precision))
     val ln2 = ln.calculate(BigDecimal(2), BigDecimal(precision))
 
-    assertEquals(log2x.doubleValue(), (lnx / ln2).doubleValue(), 0.01)
+    assertEquals(log2x.doubleValue(), (lnx / ln2).doubleValue(), precision)
   }
 }

@@ -26,7 +26,7 @@ class Log10Test {
   @Test
   def testLog10OfTenIsOne(): Unit = {
     val result = log10.calculate(BigDecimal(10), BigDecimal(precision))
-    assertEquals(1.0, result.doubleValue(), 0.0001)
+    assertEquals(1.0, result.doubleValue(), precision)
   }
 
   @Test

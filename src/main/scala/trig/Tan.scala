@@ -10,9 +10,9 @@ class Tan extends Function {
   override def calculate(x: BigDecimal, precision: BigDecimal): BigDecimal = {
     validate(x, precision)
 
-    val s = sin.calculate(x, precision / 100)
-    val c = cos.calculate(x, precision / 100)
-    val mc = MathContext(precision.scale + 10)
+    val s = sin.calculate(x, precision / 1000)
+    val c = cos.calculate(x, precision / 1000)
+    val mc = MathContext(precision.scale + 15)
 
     (s / c)(mc).setScale(precision.scale, BigDecimal.RoundingMode.HALF_EVEN)
   }

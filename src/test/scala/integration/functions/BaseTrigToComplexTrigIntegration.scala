@@ -19,7 +19,7 @@ class BaseTrigToComplexTrigIntegration {
     val expected = 1.0
 
     val actual = tan.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.001)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
@@ -28,7 +28,7 @@ class BaseTrigToComplexTrigIntegration {
     val expected = 1.0
 
     val actual = cot.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.001)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
@@ -37,13 +37,13 @@ class BaseTrigToComplexTrigIntegration {
     val expected = 1.0
 
     val actual = csc.calculate(x, BigDecimal(precision))
-    assertEquals(expected, actual.doubleValue(), 0.001)
+    assertEquals(expected, actual.doubleValue(), precision)
   }
 
   @Test
   def testTanAtPi4(): Unit = {
     val result = tan.calculate(BigDecimal(0.7854), BigDecimal(precision))
-    assertEquals(1.0, result.doubleValue(), 0.001)
+    assertEquals(1.0, result.doubleValue(), precision)
   }
 
   @Test
@@ -55,6 +55,6 @@ class BaseTrigToComplexTrigIntegration {
     val sec2 = BigDecimal(1) / (cosx * cosx)
 
     val left = BigDecimal(1) + tanx * tanx
-    assertEquals(sec2.doubleValue(), left.doubleValue(), 0.01)
+    assertEquals(sec2.doubleValue(), left.doubleValue(), precision)
   }
 }

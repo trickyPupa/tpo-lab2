@@ -26,7 +26,7 @@ class LnTest {
   @Test
   def testLnOfEIsOne(): Unit = {
     val result = ln.calculate(BigDecimal(Math.E), BigDecimal(precision))
-    assertEquals(1.0, result.doubleValue(), 0.001)
+    assertEquals(1.0, result.doubleValue(), precision)
   }
 
   @Test

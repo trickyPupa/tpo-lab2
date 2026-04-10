@@ -40,6 +40,6 @@ class CosTest {
     val original = cos.calculate(BigDecimal(x), BigDecimal(precision))
     val shifted = cos.calculate(BigDecimal(x + 6.2832), BigDecimal(precision))
 
-    assertEquals(original.doubleValue(), shifted.doubleValue(), 0.0001)
+    assertEquals(original.doubleValue(), shifted.doubleValue(), precision)
   }
 }
