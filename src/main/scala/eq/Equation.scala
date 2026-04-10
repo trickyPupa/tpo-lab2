@@ -6,19 +6,18 @@ import trig.*
 
 import java.math.{MathContext, RoundingMode}
 
-class Equation extends Function {
-
-  private val sin: Sin = Sin()
-  private val cos: Cos = Cos()
-  private val tan: Tan = Tan()
-  private val csc: Csc = Csc()
-  private val cot: Cot = Cot()
-
-  private val log2: LogN = LogN(2)
-  private val log3: LogN = LogN(3)
-  private val log5: LogN = LogN(5)
-  private val log10: LogN = LogN(10)
-  private val ln: Ln = Ln()
+class Equation(
+                private val sin: Function,
+                private val cos: Function,
+                private val tan: Function,
+                private val csc: Function,
+                private val cot: Function,
+                private val ln: Function,
+                private val log2: Function,
+                private val log3: Function,
+                private val log5: Function,
+                private val log10: Function
+              ) extends Function {
 
   override def calculate(x: BigDecimal, p: BigDecimal): BigDecimal = {
     // x <= 0 : (((((sin(x) + cos(x)) * csc(x)) - cos(x)) / (cos(x) ^ 3)) * (((sin(x) / sin(x)) ^ 3) * ((sin(x) / tan(x)) / cot(x))))
@@ -28,7 +27,7 @@ class Equation extends Function {
       val cscx = c(csc, x, p)
       val tanx = c(tan, x, p)
       val cotx = c(cot, x, p)
-      
+
       ((((sinx + cosx) * cscx) - cosx) / cosx.pow(3)) *
         ((sinx / sinx).pow(3) * ((sinx / tanx) / cotx))
           .setScale(p.scale, BigDecimal.RoundingMode.HALF_EVEN)

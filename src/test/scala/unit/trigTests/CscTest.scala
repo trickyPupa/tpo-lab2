@@ -1,6 +1,4 @@
-package trig
-
-package trigTests
+package unit.trigTests
 
 import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows}
 import org.junit.jupiter.api.Test

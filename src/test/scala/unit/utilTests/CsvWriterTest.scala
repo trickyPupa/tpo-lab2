@@ -1,4 +1,4 @@
-package util
+package unit.utilTests
 
 import org.junit.jupiter.api.Assertions.{assertEquals, assertThrows, assertTrue}
 import org.junit.jupiter.api.{AfterEach, BeforeEach, Test}
